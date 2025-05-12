@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cart - My E-Commerce Store</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Montserrat', sans-serif;
+      margin: 0;
+      background-color: #f9f9f9;
+      color: #333;
+    }
+    header {
+      background-color: #222;
+      color: white;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+    }
+    header h1 {
+      margin: 0;
+    }
+    nav {
+      background-color: #444;
+      padding: 10px;
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      padding: 10px 15px;
+      border-radius: 5px;
+      transition: background 0.3s;
+    }
+    nav a:hover {
+      background-color: #555;
+    }
+    .container {
+      max-width: 1000px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+    .cart-title {
+      font-size: 32px;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    .cart-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background-color: #fff;
+      padding: 20px;
+      margin-bottom: 15px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    .cart-item img {
+      width: 100px;
+      border-radius: 10px;
+    }
+    .cart-item-details {
+      flex: 2;
+      padding-left: 20px;
+    }
+    .cart-item-title {
+      font-weight: 600;
+      font-size: 18px;
+      margin-bottom: 8px;
+    }
+    .cart-item-price {
+      color: #777;
+    }
+    .cart-item-quantity {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 10px;
+    }
+    .quantity-input {
+      width: 60px;
+      padding: 5px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      text-align: center;
+    }
+    .remove-button {
+      background-color: #dc3545;
+      color: #fff;
+      padding: 8px 12px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .remove-button:hover {
+      background-color: #b02a37;
+    }
+    .cart-summary, .coupon-section {
+      background-color: #fff;
+      border-radius: 10px;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      margin-bottom: 20px;
+    }
+    .checkout-button {
+      background-color: #28a745;
+      color: #fff;
+      padding: 12px 30px;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+    .checkout-button:hover {
+      background-color: #218838;
+    }
+    .apply-button {
+      background-color: #007bff;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .apply-button:hover {
+      background-color: #0056b3;
+    }
+    footer {
+      background-color: #222;
+      color: white;
+      text-align: center;
+      padding: 40px;
+      margin-top: 40px;
+    }
+    @media (max-width: 768px) {
+      .cart-item {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .cart-item img {
+        margin-bottom: 15px;
+      }
+      .cart-item-details {
+        padding-left: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🛒 Your Shopping Cart</h1>
+  </header>
+
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="about.html">About Us</a>
+    <a href="privacy.html">Privacy Policy</a>
+    <a href="contact.html">Contact Us</a>
+    <a href="cart.html">🛒 Cart</a>
+  </nav>
+
+  <div class="container">
+    <h2 class="cart-title">Items in Your Cart</h2>
+
+    <div id="cart-items"></div>
+
+    <div class="coupon-section">
+      <h3>Apply Coupon</h3>
+      <input type="text" placeholder="Enter coupon code">
+      <button class="apply-button">Apply</button>
+    </div>
+
+    <div class="cart-summary">
+      <h3>Order Summary</h3>
+      <p>Total Items: <span id="total-items">0</span></p>
+      <p>Total Price: $<span id="total-price">0.00</span></p>
+      <button class="checkout-button">Proceed to Checkout</button>
+    </div>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 My E-Commerce Store | All rights reserved.</p>
+    <p>Contact us: info@trazdone.com</p>
+  </footer>
+
+  <script>
+    function loadCartItems() {
+      const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+      const cartContainer = document.getElementById('cart-items');
+      cartContainer.innerHTML = '';
+
+      cartItems.forEach((item, index) => {
+        const cartItem = document.createElement('div');
+        cartItem.className = 'cart-item';
+        cartItem.setAttribute('data-price', item.price);
+        cartItem.setAttribute('data-index', index);
+
+        cartItem.innerHTML = `
+          <img src="${item.image}" alt="${item.title}">
+          <div class="cart-item-details">
+            <div class="cart-item-title">${item.title}</div>
+            <div class="cart-item-price">$${item.price}</div>
+            <div class="cart-item-quantity">
+              <label>Qty:</label>
+              <input type="number" class="quantity-input" value="1" min="1">
+              <button class="remove-button">Remove</button>
+            </div>
+          </div>
+        `;
+        cartContainer.appendChild(cartItem);
+      });
+      updateCartSummary();
+    }
+
+    function updateCartSummary() {
+      const items = document.querySelectorAll('.cart-item');
+      let totalItems = 0;
+      let totalPrice = 0;
+      items.forEach(item => {
+        const price = parseFloat(item.getAttribute('data-price'));
+        const quantity = parseInt(item.querySelector('.quantity-input').value);
+        totalItems += quantity;
+        totalPrice += price * quantity;
+      });
+      document.getElementById('total-items').textContent = totalItems;
+      document.getElementById('total-price').textContent = totalPrice.toFixed(2);
+    }
+
+    function removeCartItem(index) {
+      let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+      cartItems.splice(index, 1);
+      localStorage.setItem('cartItems', JSON.stringify(cartItems));
+      loadCartItems();
+    }
+
+    document.addEventListener('input', event => {
+      if (event.target.classList.contains('quantity-input')) {
+        updateCartSummary();
+      }
+    });
+
+    document.addEventListener('click', event => {
+      if (event.target.classList.contains('remove-button')) {
+        const itemElement = event.target.closest('.cart-item');
+        const index = itemElement.getAttribute('data-index');
+        removeCartItem(index);
+      }
+    });
+
+    window.addEventListener('DOMContentLoaded', loadCartItems);
+  </script>
+</body>
+</html>

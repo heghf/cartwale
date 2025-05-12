@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My E-Commerce Store</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: #f9f9f9; }
+    header { background-color: #222; color: #fff; padding: 20px; text-align: center; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.5); }
+    nav { background-color: #444; padding: 10px; display: flex; justify-content: center; align-items: center; gap: 40px; }
+    nav a { color: white; text-decoration: none; font-weight: 500; padding: 10px 15px; border-radius: 5px; transition: background 0.3s; }
+    nav a:hover { background-color: #555; }
+    .container { max-width: 1000px; margin: 20px auto; padding: 20px; background: #ffffff; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+    h1 { color: #fff; margin: 0; }
+    h2 { color: #333; margin-bottom: 20px; }
+    p { margin-bottom: 20px; }
+    ul { padding-left: 20px; margin-bottom: 20px; }
+    footer { background-color: #222; color: #fff; text-align: center; padding: 20px; margin-top: 40px; }
+    .search-bar { margin: 20px 0; display: flex; justify-content: center; }
+    .search-bar input { width: 60%; padding: 8px; border-radius: 5px 0 0 5px; border: 2px solid #ccc; font-size: 16px; }
+    .search-bar button { padding: 10px 20px; background-color: #28a745; color: #fff; border: none; border-radius: 0 5px 5px 0; cursor: pointer; transition: background 0.3s; }
+    .search-bar button:hover { background-color: #218838; }
+    .categories { display: flex; justify-content: center; padding: 20px; gap: 20px; background-color: #f4f4f4; border-radius: 10px; }
+    .category { background: #ddd; padding: 20px; border-radius: 8px; width: 150px; text-align: center; transition: background 0.3s, transform 0.3s; }
+    .category:hover { background-color: #ccc; transform: scale(1.05); }
+    .products { display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; padding: 40px; }
+    .product { border: 4px solid #ccc; padding: 20px; border-radius: 8px; text-align: center; width: 300px; background-color: #fff; transition: box-shadow 0.3s; }
+    .product:hover { box-shadow: 0 10px 20px rgba(0,0,0,0.2); }
+    .product img { width: 100%; height: auto; border-radius: 10px; }
+    .product button { margin-top: 10px; padding: 10px 15px; background-color: #28a745; color: #fff; border: none; border-radius: 5px; cursor: pointer; transition: background 0.3s; }
+    .product button:hover { background-color: #218838; }
+    @media (max-width: 768px) { .category { width: 100px; } .product { width: 90%; } }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="https://blogger.googleusercontent.com/img/a/AVvXsEizS399G0XohDIEnmofwSzS8UbD5FEqTQF5siVaEZFAfHjLV2-axmkM0FU1if88AkzVqJM2y-uNvfXQ3IlKKRhQwYYa36ltI2T9skuBZy1B4LYpP0wD3WpSTseB_6c6u3IrI-Ts_pJ2E4d7rtjJfE7C4BNYWHhMa9EewIc8rERMzX_fuxp4KlJ30-p2Wlvo=w300" alt="trazdon alt">
+    <h1>Welcome to My E-Commerce Store</h1>
+  </header>
+
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="about.html">About Us</a>
+    <a href="privacy.html">Privacy Policy</a>
+    <a href="contact.html">Contact Us</a>
+    <a href="cart.html">🛒 Cart</a>
+  </nav>
+
+  <div class="container">
+    <h2>About Us</h2>
+    <p>Welcome to <strong>My E-Commerce Store</strong> — your trusted destination for quality products and seamless online shopping. Founded in 2025, we aim to deliver an exceptional e-commerce experience by offering a wide range of products, competitive prices, and excellent customer service.</p>
+    <h2>Our Mission</h2>
+    <p>Our mission is to make online shopping easy, affordable, and reliable. We focus on customer satisfaction and strive to build long-term relationships by offering great products and support.</p>
+    <h2>What We Offer</h2>
+    <ul>
+      <li>Electronics, gadgets, and accessories</li>
+      <li>Fashion and lifestyle products</li>
+      <li>Books, stationery, and educational tools</li>
+      <li>Home and kitchen essentials</li>
+    </ul>
+    <h2>Why Choose Us?</h2>
+    <ul>
+      <li>Fast and secure checkout process</li>
+      <li>Safe payment methods</li>
+      <li>Customer-first support system</li>
+      <li>Daily discounts and exclusive deals</li>
+    </ul>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 My E-Commerce Store | All rights reserved.</p>
+  </footer>
+</body>
+</html>
